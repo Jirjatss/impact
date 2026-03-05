@@ -31,6 +31,11 @@ const PerformancePage = () => {
     }
   };
 
+  const filteredData =
+    data?.data?.filter(({ Nama }) =>
+      Nama?.toLowerCase().includes(searchName.toLowerCase())
+    ) || [];
+
   useEffect(() => {
     fetchData("", page);
   }, []);
@@ -73,37 +78,58 @@ const PerformancePage = () => {
             {/* head */}
             <thead className=" text-black p-4">
               <tr className="bg-[#ffffff]">
-                <th className="p-2.5 text-left">No</th>
-                <th className="p-2.5 text-left">Name</th>
-                <th className="p-2.5 text-left">Email</th>
-                <th className="p-2.5 text-center">Pencapaian</th>
-                <th className="p-2.5 text-right">Target</th>
+                <th className="p-2.5 center w-[10%] border-r border-gray-300">
+                  No
+                </th>
+                <th className="p-2.5 text-center w-[30%]  border-r border-gray-300">
+                  Name
+                </th>
+                <th className="p-2.5 center w-[35%]  border-r border-gray-300">
+                  Email
+                </th>
+                <th className="p-2.5 text-center  border-r border-gray-300">
+                  Pencapaian
+                </th>
+                <th className="p-2.5 text-center">Target</th>
               </tr>
             </thead>
-            {data.data && (
-              <tbody className="">
-                {data?.data
-                  .filter(({ Nama }) => {
-                    return Nama.toLowerCase().includes(searchName);
-                  })
-                  .map((item, index) => {
-                    const genap = index % 2 === 0;
-                    return (
-                      <tr
-                        key={index}
-                        className={`text-black ${
-                          genap && "bg-gray-200"
-                        } hover:bg-gray-300 cursor-pointer`}
-                      >
-                        <td className="p-2.5 text-left">{index + 1}</td>
-                        <td className="p-2.5 text-left">{item.Nama}</td>
-                        <td className="p-2.5 text-left">{item.Email}</td>
-                        <td className="p-2.5 text-center">{item.Pencapaian}</td>
-                        <td className="p-2.5 text-right">{item.Target}</td>
-                      </tr>
-                    );
-                  })}
+            {filteredData.length ? (
+              <tbody className="border-t border-b border-gray-300">
+                {filteredData.map((item, index) => {
+                  const genap = index % 2 !== 0;
+                  return (
+                    <tr
+                      key={index}
+                      className={`text-black ${
+                        genap && "bg-gray-200"
+                      } hover:bg-gray-300 cursor-pointer`}
+                    >
+                      <td className="p-2.5 text-center border-r border-gray-300">
+                        {index + 1}
+                      </td>
+                      <td className="p-2.5 text-center border-r border-gray-300">
+                        {item.Nama}
+                      </td>
+                      <td className="p-2.5 text-center border-r border-gray-300">
+                        {item.Email}
+                      </td>
+                      <td className="p-2.5 text-center border-r border-gray-300">
+                        {item.Pencapaian}
+                      </td>
+                      <td className="p-2.5 text-center">{item.Target}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
+            ) : (
+              <tr className="text-black bg-gray-200">
+                <td
+                  colSpan="5"
+                  className="p-2.5 text-center italic text-gray-500"
+                >
+                  No matching records found
+                </td>
+              </tr>
             )}
           </table>
           <div className="flex justify-end mt-4">
