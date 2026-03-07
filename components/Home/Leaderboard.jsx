@@ -60,7 +60,7 @@ const Leaderboard = () => {
   const others = sorted?.slice(3);
 
   return (
-    <div className="bg-gray-50 py-10 md:py-16">
+    <div className="py-10 md:py-16">
       <h1 className="text-6xl font-bold text-center mb-4 text-gray-600">
         Leaderboard
       </h1>
