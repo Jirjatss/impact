@@ -1,11 +1,17 @@
-import Siderbar from "./Sidebar";
+"use client";
+
+import Navbar from "./Navbar";
+import { usePathname } from "next/navigation";
 
 function Layout({ children }) {
+  const pathname = usePathname();
   return (
     <>
-      <Siderbar />
-      <div className="w-full pl-0 md:pl-64 min-h-screen py-4 card-mentor bg-cover">
-        <div className="md:mx-10">{children}</div>
+      <Navbar />
+      <div
+        className={`w-full min-h-screen card-mentor bg-cover pb-24 ${pathname !== "/" && "md:pt-24 pt-16 md:px-8"}`}
+      >
+        {children}
       </div>
     </>
   );

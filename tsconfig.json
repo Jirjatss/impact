@@ -29,7 +29,8 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "app/performance/page.jsx"
+    "app/performance/page.jsx",
+    "app/page.js"
   ],
   "exclude": ["node_modules"]
 }
