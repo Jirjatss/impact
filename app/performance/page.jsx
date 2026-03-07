@@ -58,7 +58,7 @@ const PerformancePage = () => {
           Performance
         </h1>
         {loading ? (
-          <div className="flex flex-col gap-3 justify-center items-center">
+          <div className="flex flex-col gap-3 justify-center items-center mt-24">
             <span className="loading loading-ring loading-md"></span>
             Loading
           </div>

@@ -65,7 +65,7 @@ const Leaderboard = () => {
         Leaderboard
       </h1>
       {loading || !sorted || !top3 || !others ? (
-        <div className="flex flex-col gap-3 justify-center items-center">
+        <div className="flex flex-col gap-3 justify-center items-center mt-24">
           <span className="loading loading-ring loading-md"></span>
           Loading
         </div>
