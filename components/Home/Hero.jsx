@@ -6,16 +6,15 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const heroSlides = [
   {
     id: 1,
-    title:
-      "Improve Motivation and Performance for customer satisACTion (IMPACT)",
+    title: "Improve Motivation and Performance for customer satisACTion",
     description:
-      "IMPACT membantu meningkatkan motivasi dan kinerja tim agar mampu memberikan layanan terbaik, meningkatkan kepuasan pelanggan, dan menciptakan pengalaman yang lebih positif bagi setiap interaksi.",
+      "Sebuah wadah yang diciptakan untuk mendengar, menyimpan dan menyelesaikan setiap kegelisahan yang kamu miliki. Karena suaramu, berhak didengarkan.",
     image:
       "https://cdn.topkarir.com/production/assets/revamp/images/header/tipskarir.webp",
   },
   {
     id: 2,
-    title: "See your Performance Here",
+    title: "NEED MORE HELP",
     description:
       "Pantau perkembangan performa kamu berdasarkan hasil penjualan yang telah dicapai, lihat seberapa dekat kamu dengan target, dan ketahui posisi kamu dalam leaderboard.",
     image:

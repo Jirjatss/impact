@@ -22,7 +22,7 @@ const CheckIn = () => {
     targetSheet: "Checkout",
     tanggal: "",
     nama: "",
-    email: "",
+    nik: "",
     kepuasan_pelayanan: "",
     detail_kepuasan_pelayanan: "",
     perasaan: "",
@@ -37,7 +37,7 @@ const CheckIn = () => {
 
   const disabled =
     formData.nama === "" ||
-    formData.email === "" ||
+    formData.nik === "" ||
     formData.kepuasan_pelayanan === "" ||
     formData.perasaan === "" ||
     formData.kesan === "" ||
@@ -75,7 +75,7 @@ const CheckIn = () => {
       setFormData({
         targetSheet: "Checkout",
         nama: "",
-        email: "",
+        nik: "",
         kepuasan_pelayanan: "",
         detail_kepuasan_pelayanan: "",
         perasaan: "",
@@ -97,9 +97,9 @@ const CheckIn = () => {
   };
 
   return (
-    <Layout>
+    <Layout className="bg-[#f1ece7] ">
       <h1 className="w-full mb-8 border-b border-gray-300 py-4 text-4xl font-semibold text-gray-600">
-        Check Out
+        Good Evening, Champion!
       </h1>
       <div className="flex gap-8 items-start">
         <div className="flex flex-col w-2/3 border-gray-300 border shadow-md rounded-md bg-white p-8">
@@ -119,16 +119,19 @@ const CheckIn = () => {
             </label>
 
             <label className="input bg-transparent border border-gray-300 w-full">
-              <span className="label">Email</span>
+              <span className="label">NIK</span>
               <input
-                type="email"
-                autoComplete="new-email"
-                placeholder="Email"
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                autoComplete="new-nik"
+                placeholder="NIK"
                 className="bg-transparent outline-none w-full"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
+                value={formData.nik}
+                onChange={(e) => {
+                  const value = e.target.value.replace(/\D/g, "");
+                  setFormData({ ...formData, nik: value });
+                }}
                 required
               />
             </label>
@@ -328,7 +331,23 @@ const CheckIn = () => {
         {/* Sidebar Instruksi */}
         <div className="shadow-md w-1/3 border max-h-fit border-gray-300 rounded-md bg-white">
           <p className="p-4 border-b border-gray-300 font-bold">Instruksi</p>
-          <p className="p-4 text-sm">1. Silakan isi Form untuk Check Out.</p>
+          <div className="flex flex-col gap-4 my-4">
+            <p className="px-4 text-sm">
+              1. Isilah setiap kolom sesuai dengan kondisi kamu saat ini
+            </p>
+            <p className="px-4 text-sm">
+              2. Tidak ada jawaban benar atau salah dalam form ini
+            </p>
+            <p className="px-4 text-sm">
+              3. Setiap jawaban akan dijamin kerahasiaannya
+            </p>
+          </div>
+          <div className="p-4 bg-[#f5a458] mx-auto w-3/4 flex rounded-md my-4 mt-8 text-white flex-col gap-4 justify-center items-center text-center font-semibold">
+            <p className="px-4 text-sm">THANK YOU FOR YOUR HARDWORK TODAY!</p>
+            <p className="px-4 text-sm">
+              HAVE A GOOD REST AND COME BACK EVEN STRONGER TOMORROW
+            </p>
+          </div>
         </div>
       </div>
     </Layout>

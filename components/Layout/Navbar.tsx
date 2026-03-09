@@ -34,7 +34,7 @@ export default function Navbar() {
         <a
           href="#home"
           onClick={(e) => scrollToSection(e, "#home")}
-          className="text-xl md:text-2xl font-bold text-red-600 shrink-0 flex items-center gap-2"
+          className="text-xl md:text-2xl font-bold text-[#c1121f] shrink-0 flex items-center gap-2"
         >
           <Image src={Logo} alt="" className="w-8 h-8" />
           IMPACT

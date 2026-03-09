@@ -17,13 +17,28 @@ const Leaderboard = () => {
         ...result,
         data: result.data.map(
           ({
-            ["Hasil Penjualan"]: hasil_penjualan,
-            ["Target Penjualan"]: target_penjualan,
+            ["PSB HALO"]: psb_halo,
+            ["ORBIT"]: orbit,
+            ["PSB INDIHOME"]: psb_indihome,
+            ["VISIT"]: visit,
+            ["AST"]: ast,
+            ["TNPS"]: tnps,
+            ["RETENTION"]: retention,
+            ["FINAL KPI"]: final_kpi,
+            ["NIK"]: nik,
             ...rest
           }) => ({
             ...rest,
-            hasil_penjualan,
-            target_penjualan,
+            psb_halo,
+            orbit,
+            psb_indihome,
+            visit,
+            ast,
+            tnps: tnps * 100,
+            retention,
+            final_kpi: final_kpi * 100,
+            nik: nik,
+            image: rest.Photo,
           }),
         ),
       });
@@ -39,24 +54,15 @@ const Leaderboard = () => {
   }, []);
 
   const sorted = data?.data
-    ?.map((item) => {
-      const persentase = (item.hasil_penjualan / item.target_penjualan) * 100;
-
-      return {
-        name: item.Nama,
-        image: item.Photo,
-        persentase,
-        pts: Math.round(persentase),
-      };
-    })
-    .sort((a, b) => b.persentase - a.persentase)
-    .map((item, index) => ({
+    ?.sort((a, b) => b.final_kpi - a.final_kpi)
+    .map((item) => ({
       ...item,
-      rank: index + 1,
     }))
     .slice(0, 10);
 
   const top3 = sorted?.slice(0, 3);
+  console.log("top3:", top3);
+  console.log("sorted:", sorted);
   const others = sorted?.slice(3);
 
   return (
@@ -83,8 +89,10 @@ const Leaderboard = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="text-sm mt-2">{top3[1].name}</p>
-                <p className="text-yellow-400 font-bold">{top3[1].pts}</p>
+                <p className="text-sm mt-2">{top3[1].Nama}</p>
+                <p className="text-yellow-400 font-bold">
+                  {top3[1].final_kpi}%
+                </p>
               </div>
             )}
 
@@ -99,9 +107,9 @@ const Leaderboard = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="text-sm mt-2">{top3[0].name}</p>
+                <p className="text-sm mt-2">{top3[0].Nama}</p>
                 <p className="text-yellow-400 text-xl font-bold">
-                  {top3[0].pts}
+                  {top3[0].final_kpi}%
                 </p>
               </div>
             )}
@@ -117,8 +125,10 @@ const Leaderboard = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="text-sm mt-2">{top3[2].name}</p>
-                <p className="text-yellow-400 font-bold">{top3[2].pts}</p>
+                <p className="text-sm mt-2">{top3[2].Nama}</p>
+                <p className="text-yellow-400 font-bold">
+                  {top3[2].final_kpi}%
+                </p>
               </div>
             )}
           </div>
@@ -133,11 +143,11 @@ const Leaderboard = () => {
                 <div className="flex items-center gap-3">
                   <span className="font-bold">{index + 4}</span>
 
-                  <span>{player.name}</span>
+                  <span>{player.Nama}</span>
                 </div>
 
                 <span className="text-yellow-300 font-bold">
-                  {player.pts} pts
+                  {player.final_kpi}%
                 </span>
               </div>
             ))}

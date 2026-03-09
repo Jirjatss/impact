@@ -37,16 +37,31 @@ const PerformancePage = () => {
       )
       .map(
         ({
-          ["Hasil Penjualan"]: hasil_penjualan,
-          ["Target Penjualan"]: target_penjualan,
+          ["PSB HALO"]: psb_halo,
+          ["ORBIT"]: orbit,
+          ["PSB INDIHOME"]: psb_indihome,
+          ["VISIT"]: visit,
+          ["AST"]: ast,
+          ["TNPS"]: tnps,
+          ["RETENTION"]: retention,
+          ["FINAL KPI"]: final_kpi,
+          ["NIK"]: nik,
           ...rest
         }) => ({
           ...rest,
-          hasil_penjualan,
-          target_penjualan,
+          psb_halo,
+          orbit,
+          psb_indihome,
+          visit,
+          ast,
+          tnps: tnps * 100,
+          retention,
+          final_kpi: final_kpi * 100,
+          nik: nik,
         }),
       ) || [];
 
+  console.log("filteredData:", filteredData);
   useEffect(() => {
     fetchData("", page);
   }, []);
@@ -90,19 +105,35 @@ const PerformancePage = () => {
               {/* head */}
               <thead className=" text-black p-4">
                 <tr className="bg-[#ffffff]">
-                  <th className="p-2.5 center w-[10%] border-r border-gray-300">
-                    No
-                  </th>
-                  <th className="p-2.5 text-center w-[30%]  border-r border-gray-300">
+                  <th className="p-2.5 center border-r border-gray-300">No</th>
+                  <th className="p-2.5 text-center border-r border-gray-300">
                     Name
                   </th>
-                  <th className="p-2.5 center w-[35%]  border-r border-gray-300">
-                    Email
+                  <th className="p-2.5 center border-r border-gray-300">
+                    PSB HALO
+                  </th>
+                  <th className="p-2.5 text-center border-r border-gray-300">
+                    ORBIT
+                  </th>
+                  <th className="p-2.5 text-center border-r border-gray-300">
+                    PSB INDIHOME
+                  </th>
+                  <th className="p-2.5 text-center border-r border-gray-300">
+                    VISIT
                   </th>
                   <th className="p-2.5 text-center  border-r border-gray-300">
-                    Target
+                    AST
                   </th>
-                  <th className="p-2.5 text-center">Hasil</th>
+                  <th className="p-2.5 text-center border-r border-gray-300">
+                    TNPS
+                  </th>
+                  <th className="p-2.5 text-center border-r border-gray-300">
+                    RETENTION
+                  </th>
+                  <th className="p-2.5 text-center border-r border-gray-300">
+                    FINAL KPI
+                  </th>
+                  <th className="p-2.5 text-center">NIK</th>
                 </tr>
               </thead>
               {filteredData.length ? (
@@ -123,14 +154,30 @@ const PerformancePage = () => {
                           {item.Nama}
                         </td>
                         <td className="p-2.5 text-center border-r border-gray-300">
-                          {item.Email}
+                          {item.psb_halo}
                         </td>
                         <td className="p-2.5 text-center border-r border-gray-300">
-                          {item.target_penjualan}
+                          {item.orbit}
                         </td>
-                        <td className="p-2.5 text-center">
-                          {item.hasil_penjualan}
+                        <td className="p-2.5 text-center border-r border-gray-300">
+                          {item.psb_indihome}
                         </td>
+                        <td className="p-2.5 text-center border-r border-gray-300">
+                          {item.visit}
+                        </td>
+                        <td className="p-2.5 text-center border-r border-gray-300">
+                          {item.ast}
+                        </td>
+                        <td className="p-2.5 text-center border-r border-gray-300">
+                          {item.tnps}%
+                        </td>
+                        <td className="p-2.5 text-center border-r border-gray-300">
+                          {item.retention}
+                        </td>
+                        <td className="p-2.5 text-center border-r border-gray-300">
+                          {item.final_kpi}%
+                        </td>
+                        <td className="p-2.5 text-center">{item.nik}</td>
                       </tr>
                     );
                   })}
