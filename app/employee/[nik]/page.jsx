@@ -143,24 +143,24 @@ const Page = async ({ params }) => {
           </div>
           <div className="border-b border-gray-300" />
 
-          <div className="grid md:grid-cols-4 grid-cols-2 gap-6">
+          <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-6">
             {metrics.map((metric, index) => {
               const Icon = metric.icon;
 
               return (
                 <div
                   key={index}
-                  className={`bg-gradient-to-r ${metric.gradient} rounded-xl p-6 shadow-sm flex items-center gap-4`}
+                  className={`bg-gradient-to-r ${metric.gradient} rounded-xl p-6 shadow-sm flex items-center gap-3`}
                 >
                   <div
-                    className={`rounded-full p-2 bg-white/70 flex justify-center items-center h-20 w-20`}
+                    className={`rounded-full p-2 bg-white/70 flex justify-center items-center xl:h-20 xl:w-20 h-16 w-16`}
                   >
-                    <Icon className="text-gray-600" size={40} />
+                    <Icon className="text-gray-600 xl:w-10 xl:h-10 h-8 w-8" />
                   </div>
                   <div className="flex flex-col gap-2 flex-1 justify-start">
-                    <p className="text-gray-600 text-2xl">{metric.title}</p>
+                    <p className="text-gray-600 xl:text-2xl">{metric.title}</p>
 
-                    <h2 className="text-2xl font-bold text-gray-800">
+                    <h2 className="xl:text-2xl font-bold text-gray-800">
                       {metric.value}
                     </h2>
                   </div>

@@ -58,14 +58,14 @@ export default function HeroCarousel() {
                 className="absolute inset-0 w-full h-full object-contain"
               />
               <div className="relative z-10 text-start space-y-6 px-4 max-w-4xl md:mx-24">
-                <h1 className="text-4xl lg:text-6xl font-bold text-[#5a5a72]">
+                <h1 className="text-4xl  xl:text-6xl font-bold text-[#5a5a72]">
                   {slide.title}
                 </h1>
                 <p className="hidden lg:flex text-lg md:text-2xl text-black">
                   {slide.description}
                 </p>
               </div>
-              <p className="hidden lg:flex text-lg md:text-2xl text-black font-semibold absolute bottom-6  left-1/2 -translate-x-1/2 -translate-y-1/2 italic">
+              <p className="hidden lg:flex text-lg md:text-2xl text-black font-semibold absolute bottom-6  italic w-full text-center justify-center items-center mb-8">
                 {slide.tagline}
               </p>
             </div>
