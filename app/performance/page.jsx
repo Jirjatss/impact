@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout/index";
+import { useRouter } from "next/navigation";
 
 const PerformancePage = () => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -9,6 +10,7 @@ const PerformancePage = () => {
   const [searchName, setSearchName] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const fetchData = async (overrideName = null, overridePage = null) => {
     setLoading(true);
@@ -53,7 +55,9 @@ const PerformancePage = () => {
           orbit,
           psb_indihome,
           visit,
-          ast,
+          ast: new Date(ast).toLocaleTimeString("en-GB", {
+            hour12: false,
+          }),
           tnps: tnps * 100,
           retention,
           final_kpi: final_kpi * 100,
@@ -68,10 +72,7 @@ const PerformancePage = () => {
 
   return (
     <Layout>
-      <div className="overflow-x-auto overflow-hidden">
-        <h1 className="w-full mb-8 border-b border-gray-300 py-4 text-4xl font-semibold text-gray-600">
-          Performance
-        </h1>
+      <div className="overflow-x-auto overflow-hidden pt-4">
         {loading ? (
           <div className="flex flex-col gap-3 justify-center items-center mt-24">
             <span className="loading loading-ring loading-md"></span>
@@ -79,7 +80,7 @@ const PerformancePage = () => {
           </div>
         ) : (
           <>
-            <div className="flex justify-between items-center mb-2">
+            <div className="flex justify-between items-center mb-4">
               <button
                 className="px-3 py-2 bg-[#2563EB] text-white rounded-md cursor-pointer item"
                 onClick={async () => {
@@ -104,10 +105,13 @@ const PerformancePage = () => {
             <table className="border border-gray-300 w-full">
               {/* head */}
               <thead className=" text-black p-4">
-                <tr className="bg-[#ffffff]">
+                <tr className="">
                   <th className="p-2.5 center border-r border-gray-300">No</th>
                   <th className="p-2.5 text-center border-r border-gray-300">
                     Name
+                  </th>
+                  <th className="p-2.5 text-center border-r border-gray-300">
+                    NIK
                   </th>
                   <th className="p-2.5 center border-r border-gray-300">
                     PSB HALO
@@ -130,19 +134,17 @@ const PerformancePage = () => {
                   <th className="p-2.5 text-center border-r border-gray-300">
                     RETENTION
                   </th>
-                  <th className="p-2.5 text-center border-r border-gray-300">
-                    FINAL KPI
-                  </th>
-                  <th className="p-2.5 text-center">NIK</th>
+                  <th className="p-2.5 text-center">FINAL KPI</th>
                 </tr>
               </thead>
               {filteredData.length ? (
                 <tbody className="border-t border-b border-gray-300">
                   {filteredData.map((item, index) => {
-                    const genap = index % 2 !== 0;
+                    const genap = index % 2 === 0;
                     return (
                       <tr
                         key={index}
+                        onClick={() => router.push(`/employee/${item.nik}`)}
                         className={`text-black ${
                           genap && "bg-gray-200"
                         } hover:bg-gray-300 cursor-pointer`}
@@ -152,6 +154,9 @@ const PerformancePage = () => {
                         </td>
                         <td className="p-2.5 text-center border-r border-gray-300">
                           {item.Nama}
+                        </td>
+                        <td className="p-2.5 text-center border-r border-gray-300">
+                          {item.nik}
                         </td>
                         <td className="p-2.5 text-center border-r border-gray-300">
                           {item.psb_halo}
@@ -174,10 +179,7 @@ const PerformancePage = () => {
                         <td className="p-2.5 text-center border-r border-gray-300">
                           {item.retention}
                         </td>
-                        <td className="p-2.5 text-center border-r border-gray-300">
-                          {item.final_kpi}%
-                        </td>
-                        <td className="p-2.5 text-center">{item.nik}</td>
+                        <td className="p-2.5 text-center">{item.final_kpi}%</td>
                       </tr>
                     );
                   })}

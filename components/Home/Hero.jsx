@@ -11,12 +11,13 @@ const heroSlides = [
       "Sebuah wadah yang diciptakan untuk mendengar, menyimpan dan menyelesaikan setiap kegelisahan yang kamu miliki. Karena suaramu, berhak didengarkan.",
     image:
       "https://cdn.topkarir.com/production/assets/revamp/images/header/tipskarir.webp",
+    tagline: "Empowering Every Voice to Deliver Better Service",
   },
   {
     id: 2,
     title: "NEED MORE HELP",
     description:
-      "Pantau perkembangan performa kamu berdasarkan hasil penjualan yang telah dicapai, lihat seberapa dekat kamu dengan target, dan ketahui posisi kamu dalam leaderboard.",
+      "If you experience or see any violations a twork, you can also seek for help through Telkomsel’s RWP (Respectful Workplace Program)",
     image:
       "https://cdn.topkarir.com/production/assets/revamp/images/header/kewirausahaan.webp",
   },
@@ -56,7 +57,6 @@ export default function HeroCarousel() {
                 alt={slide.title}
                 className="absolute inset-0 w-full h-full object-contain"
               />
-
               <div className="relative z-10 text-start space-y-6 px-4 max-w-4xl md:mx-24">
                 <h1 className="text-4xl lg:text-6xl font-bold text-[#5a5a72]">
                   {slide.title}
@@ -65,6 +65,9 @@ export default function HeroCarousel() {
                   {slide.description}
                 </p>
               </div>
+              <p className="hidden lg:flex text-lg md:text-2xl text-black font-semibold absolute bottom-6  left-1/2 -translate-x-1/2 -translate-y-1/2 italic">
+                {slide.tagline}
+              </p>
             </div>
           ))}
         </div>

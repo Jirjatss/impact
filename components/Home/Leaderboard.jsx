@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import diamond from "../../assets/medal/king.png";
+import silver from "../../assets/medal/silver.png";
+import bronze from "../../assets/medal/bronze.png";
+import Image from "next/image";
 
 const Leaderboard = () => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -58,11 +62,9 @@ const Leaderboard = () => {
     .map((item) => ({
       ...item,
     }))
-    .slice(0, 10);
+    .slice(0, 5);
 
   const top3 = sorted?.slice(0, 3);
-  console.log("top3:", top3);
-  console.log("sorted:", sorted);
   const others = sorted?.slice(3);
 
   return (
@@ -70,6 +72,9 @@ const Leaderboard = () => {
       <h1 className="text-6xl font-bold text-center mb-4 text-gray-600">
         Leaderboard
       </h1>
+      <p className="text-center text-2xl font-semibold text-gray-600 mb-4">
+        KPI March 2026
+      </p>
       {loading || !sorted || !top3 || !others ? (
         <div className="flex flex-col gap-3 justify-center items-center mt-24">
           <span className="loading loading-ring loading-md"></span>
@@ -77,12 +82,16 @@ const Leaderboard = () => {
         </div>
       ) : (
         <div className="flex flex-col items-center py-10 mx-auto font-semibold">
-          <div className="flex items-end gap-6 mb-10 w-full justify-center">
+          <div className="flex items-end gap-10 mb-10 w-full justify-center">
             {/* Rank 2 */}
             {top3[1] && (
-              <div className="flex flex-col items-center">
-                <span className="text-lg font-bold">2</span>
-                <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl overflow-hidden">
+              <div className="flex flex-col items-center w-1/6 bg-gradient-to-b from-[#F8FAFC] via-[#E2E8F0] to-[#94A3B8] ring-1 ring-white/50 shadow-[inset_0_-20px_40px_rgba(30,64,175,0.3)] rounded-md p-4 relative">
+                <Image
+                  src={silver}
+                  alt=""
+                  className="w-16 h-16 mb-3 absolute top-0 right-8"
+                />
+                <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl overflow-hidden border border-white/50">
                   <img
                     src={top3[1].image}
                     alt=""
@@ -90,35 +99,39 @@ const Leaderboard = () => {
                   />
                 </div>
                 <p className="text-sm mt-2">{top3[1].Nama}</p>
-                <p className="text-yellow-400 font-bold">
-                  {top3[1].final_kpi}%
-                </p>
+                <p className=" font-bold">{top3[1].final_kpi}%</p>
               </div>
             )}
 
             {/* Rank 1 */}
             {top3[0] && (
-              <div className="flex flex-col items-center scale-110">
-                <span className="text-3xl pb-2">👑</span>
-                <div className="w-28 h-28 rounded-full   flex items-center justify-center text-4xl overflow-hidden">
+              <div className="flex flex-col items-center scale-110 bg-gradient-to-b from-[#FFFBEB] via-[#FDE68A] to-[#F59E0B] ring-1 ring-white/50 shadow-[inset_0_-20px_40px_rgba(59,130,246,0.4)] w-1/6 relative border border-[#ffe682] rounded-md p-4">
+                <Image
+                  src={diamond}
+                  alt=""
+                  className="w-10 h-10 mb-3 absolute -top-8"
+                />
+                <div className="w-28 h-28 rounded-full flex items-center justify-center text-4xl overflow-hidden border border-white/50">
                   <img
                     src={top3[0].image}
                     alt=""
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover "
                   />
                 </div>
                 <p className="text-sm mt-2">{top3[0].Nama}</p>
-                <p className="text-yellow-400 text-xl font-bold">
-                  {top3[0].final_kpi}%
-                </p>
+                <p className=" text-xl font-bold">{top3[0].final_kpi}%</p>
               </div>
             )}
 
             {/* Rank 3 */}
             {top3[2] && (
-              <div className="flex flex-col items-center">
-                <span className="text-lg font-bold">3</span>
-                <div className="w-20 h-20 rounded-full  flex items-center justify-center text-3xl overflow-hidden">
+              <div className="flex flex-col items-center w-1/6 rounded-md bg-gradient-to-b from-[#FFF7ED] via-[#FED7AA] to-[#D97706] ring-1 ring-white/50 shadow-[inset_0_-20px_40px_rgba(59,130,246,0.3)] relative p-4">
+                <Image
+                  src={bronze}
+                  alt=""
+                  className="w-16 h-16 mb-3 absolute top-0 right-8"
+                />
+                <div className="w-20 h-20 rounded-full  flex items-center justify-center text-3xl overflow-hidden border border-white/50">
                   <img
                     src={top3[2].image}
                     alt=""
@@ -126,19 +139,17 @@ const Leaderboard = () => {
                   />
                 </div>
                 <p className="text-sm mt-2">{top3[2].Nama}</p>
-                <p className="text-yellow-400 font-bold">
-                  {top3[2].final_kpi}%
-                </p>
+                <p className=" font-bold">{top3[2].final_kpi}%</p>
               </div>
             )}
           </div>
 
           {/* RANK 4+ */}
-          <div className="w-full max-w-4xl space-y-3 text-white">
+          <div className="w-full max-w-5xl space-y-3 text-white">
             {others.map((player, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between bg-[#2563EB] rounded-xl px-4 py-3 shadow"
+                className="flex items-center justify-between bg-gradient-to-r from-[#1E3A8A] via-[#2563EB] to-[#60A5FA] rounded-full p-[1px] shadow-lg shadow-blue-500/20 rounded-xl px-4 py-3 shadow"
               >
                 <div className="flex items-center gap-3">
                   <span className="font-bold">{index + 4}</span>
@@ -146,9 +157,7 @@ const Leaderboard = () => {
                   <span>{player.Nama}</span>
                 </div>
 
-                <span className="text-yellow-300 font-bold">
-                  {player.final_kpi}%
-                </span>
+                <span className=" font-bold">{player.final_kpi}%</span>
               </div>
             ))}
           </div>
