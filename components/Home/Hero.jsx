@@ -1,7 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import hero1 from "../../assets/hero/hero1.png";
+import hero2 from "../../assets/hero/hero2.png";
+import Image from "next/image";
 
 const heroSlides = [
   {
@@ -9,8 +12,7 @@ const heroSlides = [
     title: "Improve Motivation and Performance for customer satisACTion",
     description:
       "Sebuah wadah yang diciptakan untuk mendengar, menyimpan dan menyelesaikan setiap kegelisahan yang kamu miliki. Karena suaramu, berhak didengarkan.",
-    image:
-      "https://cdn.topkarir.com/production/assets/revamp/images/header/tipskarir.webp",
+    image: hero1,
     tagline: "Empowering Every Voice to Deliver Better Service",
   },
   {
@@ -18,8 +20,7 @@ const heroSlides = [
     title: "NEED MORE HELP",
     description:
       "If you experience or see any violations a twork, you can also seek for help through Telkomsel’s RWP (Respectful Workplace Program)",
-    image:
-      "https://cdn.topkarir.com/production/assets/revamp/images/header/kewirausahaan.webp",
+    image: hero2,
   },
 ];
 
@@ -42,28 +43,30 @@ export default function HeroCarousel() {
 
   return (
     <section className="relative w-full">
-      <div className="overflow-hidden relative bg-white ">
+      <div className="overflow-hidden relative">
         <div
-          className="flex transition-transform duration-500 ease-in-out bg-white lg:py-0 py-36"
+          className="flex transition-transform duration-500 ease-in-out lg:py-0 py-36"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {heroSlides.map((slide) => (
             <div
               key={slide.id}
-              className="w-full shrink-0 relative lg:h-175 items-center justify-center min-w-full grid grid-cols-2"
+              className="w-full relative lg:h-172 items-center justify-center min-w-full grid lg:grid-cols-2"
             >
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="absolute inset-0 w-full h-full object-contain"
-              />
               <div className="relative z-10 text-start space-y-6 px-4 max-w-4xl md:mx-24">
                 <h1 className="text-4xl  xl:text-6xl font-bold text-[#5a5a72]">
                   {slide.title}
                 </h1>
-                <p className="hidden lg:flex text-lg md:text-2xl text-black">
+                <p className="text-lg md:text-2xl text-black">
                   {slide.description}
                 </p>
+              </div>
+              <div className="justify-center items-center lg:flex hidden">
+                <Image
+                  src={slide.image}
+                  alt={slide.title}
+                  className="w-[750px] h-[700px] object-contain"
+                />
               </div>
               <p className="hidden lg:flex text-lg md:text-2xl text-black font-semibold absolute bottom-6  italic w-full text-center justify-center items-center mb-8">
                 {slide.tagline}

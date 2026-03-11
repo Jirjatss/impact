@@ -65,7 +65,6 @@ const PerformancePage = () => {
         }),
       ) || [];
 
-  console.log("filteredData:", filteredData);
   useEffect(() => {
     fetchData("", page);
   }, []);
