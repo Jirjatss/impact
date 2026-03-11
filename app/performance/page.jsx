@@ -188,7 +188,7 @@ const PerformancePage = () => {
                 <tbody className="border-t border-b border-gray-300">
                   <tr className="text-black bg-gray-200">
                     <td
-                      colSpan="5"
+                      colSpan="11"
                       className="p-2.5 text-center italic text-gray-500"
                     >
                       No matching records found
