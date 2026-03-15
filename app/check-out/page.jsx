@@ -4,6 +4,8 @@ import { useState } from "react";
 import Layout from "../../components/Layout/index";
 import Swal from "sweetalert2";
 import SelectField from "../../components/Form/SelectField";
+import image from "../../assets/images/6.png";
+import Image from "next/image";
 
 const getDate = () => {
   const date = new Date();
@@ -98,9 +100,7 @@ const CheckIn = () => {
 
   return (
     <Layout className="bg-[#f1ece7] ">
-      <h1 className="w-full mb-8 border-b border-gray-300 py-4 text-4xl font-semibold text-gray-600">
-        Good Evening, Champion!
-      </h1>
+      <Image src={image} className="w-full h-full mb-12 rounded-md" alt="" />
       <div className="flex gap-8 items-start">
         <div className="flex flex-col w-2/3 border-gray-300 border shadow-md rounded-md bg-white p-8">
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -222,8 +222,8 @@ const CheckIn = () => {
                   label: "Hmm, ya gitu deh",
                 },
                 {
-                  value: "Ada kendala nih hari ini :(",
-                  label: "Ada kendala nih hari ini :(",
+                  value: "Ada kendala nih hari ini ☹️",
+                  label: "Ada kendala nih hari ini ☹️",
                 },
               ]}
               onChange={(value) => setFormData({ ...formData, kendala: value })}
@@ -289,8 +289,8 @@ const CheckIn = () => {
                   label: "Yaa, okee lah",
                 },
                 {
-                  value: "Gak terbantu sama sekali :(",
-                  label: "Gak terbantu sama sekali :(",
+                  value: "Gak terbantu sama sekali ☹️",
+                  label: "Gak terbantu sama sekali ☹️",
                 },
               ]}
               onChange={(value) =>

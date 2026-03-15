@@ -74,7 +74,9 @@ const Leaderboard = () => {
       </h1>
       <p className="text-center text-2xl font-semibold text-gray-600 mb-4">
         KPI{" "}
-        {new Date().toLocaleDateString("en-US", {
+        {new Date(
+          new Date().setMonth(new Date().getMonth() - 1),
+        ).toLocaleDateString("en-US", {
           month: "long",
           year: "numeric",
         })}

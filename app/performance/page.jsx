@@ -72,6 +72,15 @@ const PerformancePage = () => {
   return (
     <Layout>
       <div className="overflow-x-auto overflow-hidden pt-4">
+        <h1 className="w-full mb-8 border-b border-gray-300 py-4 text-4xl font-semibold text-gray-600">
+          {new Date(
+            new Date().setMonth(new Date().getMonth() - 1),
+          ).toLocaleDateString("en-US", {
+            month: "long",
+          })}
+          {"'s "}
+          Performance
+        </h1>
         {loading ? (
           <div className="flex flex-col gap-3 justify-center items-center mt-24">
             <span className="loading loading-ring loading-md"></span>
