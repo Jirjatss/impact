@@ -39,19 +39,34 @@ const Page = async ({ params }) => {
 
   if (!data) notFound();
 
-  const formattedData = {
-    ...data,
-    psb_halo: data["PSB HALO"],
-    orbit: data["ORBIT"],
-    psb_indihome: data["PSB INDIHOME"],
-    visit: data["VISIT"],
-    astTime: new Date(data["AST"]).toLocaleTimeString("en-GB", {
-      hour12: false,
-    }),
-    tnps: data["TNPS"] * 100,
-    retention: data["RETENTION"],
-    final_kpi: data["FINAL KPI"] * 100,
-  };
+  const formattedData =
+    data.map(
+      ({
+        ["PSB HALO"]: psb_halo,
+        ["ORBIT"]: orbit,
+        ["PSB INDIHOME"]: psb_indihome,
+        ["VISIT"]: visit,
+        ["AST"]: ast,
+        ["TNPS"]: tnps,
+        ["RETENTION"]: retention,
+        ["FINAL KPI"]: final_kpi,
+        ["NIK"]: nik,
+        ...rest
+      }) => ({
+        ...rest,
+        psb_halo,
+        orbit,
+        psb_indihome,
+        visit,
+        ast: new Date(ast).toLocaleTimeString("en-GB", {
+          hour12: false,
+        }),
+        tnps: tnps * 100,
+        retention,
+        final_kpi: final_kpi * 100,
+        nik: nik,
+      }),
+    ) || [];
 
   const getMedalDecider = () => {
     if (formattedData.CATEGORY === "DIAMOND") return diamond;
