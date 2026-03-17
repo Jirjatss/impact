@@ -16,8 +16,8 @@ import {
   CheckCircle,
 } from "lucide-react";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export const generateStaticParams = async () => {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(API_URL);
   const result = await res.json();
 
@@ -27,7 +27,6 @@ export const generateStaticParams = async () => {
 };
 
 const Page = async ({ params }) => {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { nik } = await params;
 
   const res = await fetch(API_URL, {
@@ -46,15 +45,13 @@ const Page = async ({ params }) => {
     orbit: data["ORBIT"],
     psb_indihome: data["PSB INDIHOME"],
     visit: data["VISIT"],
-    ast: new Date(data["AST"]).toLocaleTimeString("en-GB", {
+    astTime: new Date(data["AST"]).toLocaleTimeString("en-GB", {
       hour12: false,
     }),
     tnps: data["TNPS"] * 100,
     retention: data["RETENTION"],
     final_kpi: data["FINAL KPI"] * 100,
   };
-
-  console.log("formattedData:", formattedData);
 
   const getMedalDecider = () => {
     if (formattedData.CATEGORY === "DIAMOND") return diamond;
@@ -94,7 +91,7 @@ const Page = async ({ params }) => {
     },
     {
       title: "AST",
-      value: "HAHAHAH",
+      value: formattedData.astTime,
       icon: Clock,
       gradient: "from-cyan-200 to-sky-100",
     },
