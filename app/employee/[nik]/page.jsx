@@ -27,6 +27,7 @@ export const generateStaticParams = async () => {
 };
 
 const Page = async ({ params }) => {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { nik } = await params;
 
   const res = await fetch(API_URL, {
