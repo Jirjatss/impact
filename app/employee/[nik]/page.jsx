@@ -94,7 +94,7 @@ const Page = async ({ params }) => {
     },
     {
       title: "AST",
-      value: formattedData.ast,
+      value: "HAHAHAH",
       icon: Clock,
       gradient: "from-cyan-200 to-sky-100",
     },
