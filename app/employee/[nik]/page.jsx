@@ -54,6 +54,8 @@ const Page = async ({ params }) => {
     final_kpi: data["FINAL KPI"] * 100,
   };
 
+  console.log("formattedData:", formattedData);
+
   const getMedalDecider = () => {
     if (formattedData.CATEGORY === "DIAMOND") return diamond;
     if (formattedData.CATEGORY === "GOLD") return gold;
