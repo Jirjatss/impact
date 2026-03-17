@@ -16,9 +16,8 @@ import {
   CheckCircle,
 } from "lucide-react";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export const generateStaticParams = async () => {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(API_URL);
   const result = await res.json();
 
