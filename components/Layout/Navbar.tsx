@@ -34,7 +34,7 @@ export default function Navbar() {
         <a
           href="#home"
           onClick={(e) => scrollToSection(e, "#home")}
-          className="text-xl md:text-3xl font-bold text-[#c1121f] shrink-0 flex items-center gap-2"
+          className="text-xl md:text-5xl font-bold text-[#c1121f] shrink-0 flex items-center gap-2"
         >
           IMPACT
         </a>

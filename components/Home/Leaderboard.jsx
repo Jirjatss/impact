@@ -5,17 +5,19 @@ import diamond from "../../assets/medal/king.png";
 import silver from "../../assets/medal/silver.png";
 import bronze from "../../assets/medal/bronze.png";
 import Image from "next/image";
+import SelectField from "../Form/SelectField";
 
 const Leaderboard = () => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const [url, setUrl] = useState(API_URL);
   const [data, setData] = useState([]);
+  const [dataGrapari, setDataGrapari] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
     setLoading(true);
-    const url = API_URL;
     try {
-      const response = await fetch(url);
+      const response = await fetch(url || API_URL);
       const result = await response.json();
       setData({
         ...result,
@@ -53,9 +55,28 @@ const Leaderboard = () => {
     }
   };
 
+  const fetchGrapari = async () => {
+    setLoading(true);
+
+    const url = `${API_URL}?sheet=GraPARI`;
+    try {
+      const response = await fetch(url);
+      const result = await response.json();
+      setDataGrapari(result.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchGrapari();
+  }, []);
+
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [url]);
 
   const sorted = data?.data
     ?.sort((a, b) => b.final_kpi - a.final_kpi)
@@ -68,7 +89,7 @@ const Leaderboard = () => {
   const others = sorted?.slice(3);
 
   return (
-    <div className="py-10 md:py-16 mx-24">
+    <div className="py-10 md:py-16 mx-24 flex flex-col">
       <h1 className="text-6xl font-bold text-center mb-4 text-gray-600">
         Leaderboard
       </h1>
@@ -81,13 +102,27 @@ const Leaderboard = () => {
           year: "numeric",
         })}
       </p>
+      <div className="relative w-96 flex justify-center items-center mx-auto">
+        <SelectField
+          value={url}
+          showClearButton={false}
+          placeholder="Select GraPARI"
+          options={dataGrapari.map((item) => {
+            return {
+              value: item.Link,
+              label: item.Nama,
+            };
+          })}
+          onChange={(value) => setUrl(value)}
+        />
+      </div>
       {loading || !sorted || !top3 || !others ? (
         <div className="flex flex-col gap-3 justify-center items-center mt-24">
           <span className="loading loading-ring loading-md"></span>
           Loading
         </div>
       ) : (
-        <div className="flex flex-col items-center py-10 mx-auto font-semibold">
+        <div className="flex flex-col items-center py-10 mx-auto font-semibold w-full mt-10">
           <div className="flex items-end gap-10 mb-10 w-full justify-center">
             {/* Rank 2 */}
             {top3[1] && (

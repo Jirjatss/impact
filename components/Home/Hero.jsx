@@ -10,16 +10,13 @@ const heroSlides = [
   {
     id: 1,
     title: "Improve Motivation and Performance for customer satisACTion",
-    description:
-      "Sebuah wadah yang diciptakan untuk mendengar, menyimpan dan menyelesaikan setiap kegelisahan yang kamu miliki. Karena suaramu, berhak didengarkan.",
+    description: "Empowering Every Voice to Deliver Better Service",
     image: hero1,
-    tagline: "Empowering Every Voice to Deliver Better Service",
   },
   {
     id: 2,
     title: "NEED MORE HELP?",
-    description:
-      "If you experience or see any violations a twork, you can also seek for help through Telkomsel’s RWP (Respectful Workplace Program)",
+    description: "Empowering Every Voice to Deliver Better Service",
     image: hero2,
   },
 ];

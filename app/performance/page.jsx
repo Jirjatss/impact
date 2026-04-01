@@ -3,14 +3,32 @@
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout/index";
 import { useRouter } from "next/navigation";
+import SelectField from "@/components/Form/SelectField";
 
 const PerformancePage = () => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const [url, setUrl] = useState(API_URL);
   const [data, setData] = useState([]);
   const [searchName, setSearchName] = useState("");
+  const [dataGrapari, setDataGrapari] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  const fetchGrapari = async () => {
+    setLoading(true);
+
+    const url = `${API_URL}?sheet=GraPARI`;
+    try {
+      const response = await fetch(url);
+      const result = await response.json();
+      setDataGrapari(result.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fetchData = async (overrideName = null, overridePage = null) => {
     setLoading(true);
@@ -19,10 +37,10 @@ const PerformancePage = () => {
     const finalName = overrideName !== null ? overrideName : searchName;
     const finalPage = overridePage !== null ? overridePage : page;
 
-    const url = `${API_URL}?name=${finalName}&page=${finalPage}&limit=${10}`;
+    const urlFetch = `${url || API_URL}?name=${finalName}&page=${finalPage}&limit=${10}`;
 
     try {
-      const response = await fetch(url);
+      const response = await fetch(urlFetch);
       const result = await response.json();
       setData(result);
     } catch (error) {
@@ -55,9 +73,7 @@ const PerformancePage = () => {
           orbit,
           psb_indihome,
           visit,
-          ast: new Date(ast).toLocaleTimeString("en-GB", {
-            hour12: false,
-          }),
+          ast: ast,
           tnps: tnps * 100,
           retention,
           final_kpi: final_kpi * 100,
@@ -67,6 +83,10 @@ const PerformancePage = () => {
 
   useEffect(() => {
     fetchData("", page);
+  }, [url]);
+
+  useEffect(() => {
+    fetchGrapari();
   }, []);
 
   return (
@@ -81,6 +101,20 @@ const PerformancePage = () => {
           {"'s "}
           Performance
         </h1>
+        <div className="relative w-96 flex justify-center items-center mb-6">
+          <SelectField
+            value={url}
+            showClearButton={false}
+            placeholder="Select GraPARI"
+            options={dataGrapari.map((item) => {
+              return {
+                value: item.Link,
+                label: item.Nama,
+              };
+            })}
+            onChange={(value) => setUrl(value)}
+          />
+        </div>
         {loading ? (
           <div className="flex flex-col gap-3 justify-center items-center mt-24">
             <span className="loading loading-ring loading-md"></span>

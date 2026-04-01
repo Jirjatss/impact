@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../../components/Layout/index";
 import Swal from "sweetalert2";
 import SelectField from "../../components/Form/SelectField";
@@ -19,6 +19,26 @@ const getDate = () => {
 
 const CheckIn = () => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const [dataGrapari, setDataGrapari] = useState([]);
+  const [url, setUrl] = useState();
+  const fetchGrapari = async () => {
+    setLoading(true);
+
+    const url = `${API_URL}?sheet=GraPARI`;
+    try {
+      const response = await fetch(url);
+      const result = await response.json();
+      setDataGrapari(result.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchGrapari();
+  }, []);
 
   const [formData, setFormData] = useState({
     targetSheet: "Checkout",
@@ -35,6 +55,7 @@ const CheckIn = () => {
     detail_dukungan: "",
     kendala: "",
     detail_kendala: "",
+    grapari: "",
   });
 
   const disabled =
@@ -44,7 +65,8 @@ const CheckIn = () => {
     formData.perasaan === "" ||
     formData.kesan === "" ||
     formData.dukungan === "" ||
-    formData.kendala === "";
+    formData.kendala === "" ||
+    formData.grapari === "";
 
   const [loading, setLoading] = useState(false);
 
@@ -59,7 +81,7 @@ const CheckIn = () => {
     );
 
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(url, {
         method: "POST",
         mode: "no-cors", // Penting untuk menghindari CORS pre-flight
         cache: "no-cache",
@@ -89,6 +111,7 @@ const CheckIn = () => {
         kendala: "",
         detail_kendala: "",
         tanggal: "",
+        grapari: "",
       });
     } catch (error) {
       console.error("Error saat simpan data:", error);
@@ -135,6 +158,24 @@ const CheckIn = () => {
                 required
               />
             </label>
+
+            <div className="relative">
+              <SelectField
+                value={url}
+                showClearButton={false}
+                placeholder="Pilih GraPARI"
+                options={dataGrapari.map((item) => {
+                  return {
+                    value: item.Link,
+                    label: item.Nama,
+                  };
+                })}
+                onChange={(value) => {
+                  setUrl(value);
+                  setFormData({ ...formData, grapari: value });
+                }}
+              />
+            </div>
 
             <SelectField
               value={formData.perasaan}
@@ -278,7 +319,7 @@ const CheckIn = () => {
 
             <SelectField
               value={formData.dukungan}
-              placeholder="Apakah kamu merasa terbantu dengan dukungan yang diberikan dalam pelayanan hari ini?"
+              placeholder="Apakah kamu merasa terbantu dengan dukungan tim yang diberikan dalam pelayanan hari ini"
               options={[
                 {
                   value: "Terbantu banget dong",

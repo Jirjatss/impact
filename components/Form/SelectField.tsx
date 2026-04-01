@@ -9,6 +9,7 @@ type SelectFieldProps = {
   options: Option[];
   className?: string;
   onChange: (value: string) => void;
+  showClearButton?: boolean;
 };
 
 const SelectField = ({
@@ -17,6 +18,7 @@ const SelectField = ({
   options,
   className = "",
   onChange,
+  showClearButton = true,
 }: SelectFieldProps) => {
   const handleClear = () => {
     onChange("");
@@ -40,7 +42,7 @@ const SelectField = ({
         ))}
       </select>
 
-      {value && (
+      {showClearButton && value && (
         <button
           type="button"
           onClick={handleClear}

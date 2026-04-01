@@ -45,9 +45,7 @@ const Page = async ({ params }) => {
     orbit: data["ORBIT"],
     psb_indihome: data["PSB INDIHOME"],
     visit: data["VISIT"],
-    astTime: new Date(data["AST"]).toLocaleTimeString("en-GB", {
-      hour12: false,
-    }),
+    astTime: data["AST"],
     tnps: data["TNPS"] * 100,
     retention: data["RETENTION"],
     final_kpi: data["FINAL KPI"] * 100,
@@ -91,9 +89,7 @@ const Page = async ({ params }) => {
     },
     {
       title: "AST",
-      value: new Date(data["AST"]).toLocaleTimeString("en-GB", {
-        hour12: false,
-      }),
+      value: formattedData.astTime,
       icon: Clock,
       gradient: "from-cyan-200 to-sky-100",
     },
