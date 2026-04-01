@@ -102,20 +102,23 @@ const Leaderboard = () => {
           year: "numeric",
         })}
       </p>
-      <div className="relative w-96 flex justify-center items-center mx-auto">
-        <SelectField
-          value={url}
-          showClearButton={false}
-          placeholder="Select GraPARI"
-          options={dataGrapari.map((item) => {
-            return {
-              value: item.Link,
-              label: item.Nama,
-            };
-          })}
-          onChange={(value) => setUrl(value)}
-        />
-      </div>
+      {dataGrapari.length > 1 && (
+        <div className="relative w-96 flex justify-center items-center mx-auto">
+          <SelectField
+            value={url}
+            showClearButton={false}
+            placeholder="Select GraPARI"
+            options={dataGrapari.map((item) => {
+              return {
+                value: item.Link,
+                label: item.Nama,
+              };
+            })}
+            onChange={(value) => setUrl(value)}
+          />
+        </div>
+      )}
+
       {loading || !sorted || !top3 || !others ? (
         <div className="flex flex-col gap-3 justify-center items-center mt-24">
           <span className="loading loading-ring loading-md"></span>

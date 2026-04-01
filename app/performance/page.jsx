@@ -101,20 +101,23 @@ const PerformancePage = () => {
           {"'s "}
           Performance
         </h1>
-        <div className="relative w-96 flex justify-center items-center mb-6">
-          <SelectField
-            value={url}
-            showClearButton={false}
-            placeholder="Select GraPARI"
-            options={dataGrapari.map((item) => {
-              return {
-                value: item.Link,
-                label: item.Nama,
-              };
-            })}
-            onChange={(value) => setUrl(value)}
-          />
-        </div>
+        {dataGrapari.length > 1 && (
+          <div className="relative w-96 flex justify-center items-center mb-6">
+            <SelectField
+              value={url}
+              showClearButton={false}
+              placeholder="Select GraPARI"
+              options={dataGrapari.map((item) => {
+                return {
+                  value: item.Link,
+                  label: item.Nama,
+                };
+              })}
+              onChange={(value) => setUrl(value)}
+            />
+          </div>
+        )}
+
         {loading ? (
           <div className="flex flex-col gap-3 justify-center items-center mt-24">
             <span className="loading loading-ring loading-md"></span>
@@ -186,7 +189,11 @@ const PerformancePage = () => {
                     return (
                       <tr
                         key={index}
-                        onClick={() => router.push(`/employee/${item.nik}`)}
+                        onClick={() =>
+                          router.push(
+                            `/employee/${item.nik}?api=${encodeURIComponent(url)}`,
+                          )
+                        }
                         className={`text-black ${
                           genap && "bg-gray-200"
                         } hover:bg-gray-300 cursor-pointer`}

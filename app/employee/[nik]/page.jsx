@@ -1,4 +1,12 @@
-import { notFound } from "next/navigation";
+"use client";
+
+import { useEffect, useState } from "react";
+import {
+  useParams,
+  useSearchParams,
+  notFound,
+  useRouter,
+} from "next/navigation";
 import Layout from "../../../components/Layout";
 import platinum from "../../../assets/medal/diamond.png";
 import gold from "../../../assets/medal/gold-medal.png";
@@ -16,28 +24,58 @@ import {
   CheckCircle,
 } from "lucide-react";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-export const generateStaticParams = async () => {
-  const res = await fetch(API_URL);
-  const result = await res.json();
+const Page = () => {
+  const router = useRouter();
+  const { nik } = useParams();
+  const searchParams = useSearchParams();
+  const apiUrl = searchParams.get("api");
 
-  return result?.data?.map((item) => ({
-    NIK: item.NIK.toString(),
-  }));
-};
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-const Page = async ({ params }) => {
-  const { nik } = await params;
+  useEffect(() => {
+    const fetchDetail = async () => {
+      try {
+        const res = await fetch(apiUrl);
+        const result = await res.json();
 
-  const res = await fetch(API_URL, {
-    next: { revalidate: 60 },
-  });
+        const found = result?.data?.find((item) => item.NIK === +nik);
 
-  const result = await res.json();
+        if (!found) {
+          router.replace("/not-found");
+        } else {
+          setData(found);
+        }
+      } catch (err) {
+        console.error(err);
+        router.replace("/not-found");
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const data = result?.data?.find((item) => item.NIK === +nik);
+    if (apiUrl && nik) fetchDetail();
+    else router.replace("/not-found");
+  }, [apiUrl, nik]);
 
-  if (!data) notFound();
+  if (loading) {
+    return (
+      <Layout>
+        <div className="flex justify-center items-center h-96">
+          <span className="loading loading-ring loading-lg"></span>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!data) {
+    return (
+      <Layout>
+        <div className="text-center mt-20 text-gray-500">Data not found</div>
+      </Layout>
+    );
+  }
 
   const formattedData = {
     ...data,
@@ -45,7 +83,7 @@ const Page = async ({ params }) => {
     orbit: data["ORBIT"],
     psb_indihome: data["PSB INDIHOME"],
     visit: data["VISIT"],
-    astTime: data["AST"],
+    astTime: data["AST"], // 🔥 langsung pakai, no Date lagi
     tnps: data["TNPS"] * 100,
     retention: data["RETENTION"],
     final_kpi: data["FINAL KPI"] * 100,
@@ -127,17 +165,20 @@ const Page = async ({ params }) => {
               <h1 className="w-full mb-6 text-4xl font-semibold text-gray-600">
                 {formattedData.Nama}
               </h1>
+
               <div className="flex flex-col w-fit items-center gap-2 ml-2">
-                <Image src={tier} alt="" className="w-20 h-20" />
+                {tier && <Image src={tier} alt="" className="w-20 h-20" />}
                 <p className="font-semibold text-xl text-gray-600">
                   {formattedData.CATEGORY} TIER
                 </p>
               </div>
+
               <p className="font-semibold text-xl text-gray-600 ml-2">
                 NIK : {formattedData.NIK}
               </p>
             </div>
           </div>
+
           <div className="border-b border-gray-300" />
 
           <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-6">
@@ -149,12 +190,11 @@ const Page = async ({ params }) => {
                   key={index}
                   className={`bg-gradient-to-r ${metric.gradient} rounded-xl p-6 shadow-sm flex items-center gap-3`}
                 >
-                  <div
-                    className={`rounded-full p-2 bg-white/70 flex justify-center items-center xl:h-20 xl:w-20 h-16 w-16`}
-                  >
+                  <div className="rounded-full p-2 bg-white/70 flex justify-center items-center xl:h-20 xl:w-20 h-16 w-16">
                     <Icon className="text-gray-600 xl:w-10 xl:h-10 h-8 w-8" />
                   </div>
-                  <div className="flex flex-col gap-2 flex-1 justify-start">
+
+                  <div className="flex flex-col gap-2 flex-1">
                     <p className="text-gray-600 xl:text-2xl">{metric.title}</p>
 
                     <h2 className="xl:text-2xl font-bold text-gray-800">
