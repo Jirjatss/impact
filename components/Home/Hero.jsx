@@ -16,7 +16,7 @@ const heroSlides = [
   {
     id: 2,
     title: "NEED MORE HELP?",
-    description: "Empowering Every Voice to Deliver Better Service",
+    description:  "If you experience or see any violations a twork, you can also seek for help through Telkomsel’s RWP (Respectful Workplace Program)",,
     image: hero2,
   },
 ];
