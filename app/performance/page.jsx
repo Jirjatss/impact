@@ -37,7 +37,7 @@ const PerformancePage = () => {
     const finalName = overrideName !== null ? overrideName : searchName;
     const finalPage = overridePage !== null ? overridePage : page;
 
-    const urlFetch = `${url || API_URL}?name=${finalName}&page=${finalPage}&limit=${10}`;
+    const urlFetch = `${url || API_URL}?name=${finalName}&page=${finalPage}&limit=${15}`;
 
     try {
       const response = await fetch(urlFetch);
