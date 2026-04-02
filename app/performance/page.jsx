@@ -114,6 +114,8 @@ const PerformancePage = () => {
                 };
               })}
               onChange={(value) => {
+                setData([]);
+                setSearchName("");
                 setUrl(value);
                 setPage(1);
               }}

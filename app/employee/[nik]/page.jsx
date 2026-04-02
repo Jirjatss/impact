@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  useParams,
-  useSearchParams,
-  notFound,
-  useRouter,
-} from "next/navigation";
+import { useParams, useSearchParams, useRouter } from "next/navigation";
 import Layout from "../../../components/Layout";
 import platinum from "../../../assets/medal/diamond.png";
 import gold from "../../../assets/medal/gold-medal.png";
@@ -14,6 +9,7 @@ import silver from "../../../assets/medal/silver-medal.png";
 import bronze from "../../../assets/medal/bronze-medal.png";
 import diamond from "../../../assets/medal/king.png";
 import Image from "next/image";
+import blank from "../../../assets/images/blank.webp";
 import {
   Phone,
   Wifi,
@@ -36,7 +32,7 @@ const Page = () => {
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const res = await fetch(apiUrl);
+        const res = await fetch(`${apiUrl}?&limit=20`);
         const result = await res.json();
 
         const found = result?.data?.find((item) => item.NIK === +nik);
@@ -155,10 +151,12 @@ const Page = () => {
     <Layout>
       <div className="w-full">
         <div className="border-gray-300 border shadow-md rounded-md bg-white p-8 flex flex-col gap-4">
-          <div className="flex gap-10">
-            <img
-              src={formattedData.Photo}
+          <div className="flex gap-10 ">
+            <Image
+              src={formattedData.Photo || blank}
               alt=""
+              width={320}
+              height={320}
               className="w-56 h-56 object-cover rounded-md"
             />
             <div className="flex-1">
