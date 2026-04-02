@@ -17,7 +17,8 @@ const Leaderboard = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(url || API_URL);
+      const urlFetch = `${url || API_URL}?&limit=${20}`;
+      const response = await fetch(urlFetch);
       const result = await response.json();
       setData({
         ...result,

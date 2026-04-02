@@ -83,7 +83,7 @@ const PerformancePage = () => {
 
   useEffect(() => {
     fetchData("", page);
-  }, [url]);
+  }, [url, page]);
 
   useEffect(() => {
     fetchGrapari();
@@ -113,7 +113,10 @@ const PerformancePage = () => {
                   label: item.Nama,
                 };
               })}
-              onChange={(value) => setUrl(value)}
+              onChange={(value) => {
+                setUrl(value);
+                setPage(1);
+              }}
             />
           </div>
         )}
@@ -248,13 +251,27 @@ const PerformancePage = () => {
             </table>
             <div className="flex justify-end mt-4">
               <div className="join grid grid-cols-3 justify-end items-center">
-                <button className="join-item bg-transparent text-black p-2 border-gray-300 border cursor-pointer">
+                <button
+                  className={`${
+                    page === 1 ? "cursor-not-allowed" : "cursor-pointer"
+                  } join-item bg-transparent text-black p-2 border-gray-300 border`}
+                  onClick={() => setPage(page - 1)}
+                  disabled={page === 1}
+                >
                   Prev
                 </button>
                 <p className="text-center p-2 border-gray-300 border bg-[#2563EB] text-white">
                   {page}
                 </p>
-                <button className="join-item bg-transparent text-black p-2 border-gray-300 border cursor-pointer">
+                <button
+                  className={`${
+                    filteredData.length < 10
+                      ? "cursor-not-allowed"
+                      : "cursor-pointer"
+                  } join-item bg-transparent text-black p-2 border-gray-300 border `}
+                  onClick={() => setPage(page + 1)}
+                  disabled={filteredData.length < 10}
+                >
                   Next
                 </button>
               </div>
