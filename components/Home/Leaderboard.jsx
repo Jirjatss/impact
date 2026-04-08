@@ -143,7 +143,7 @@ const Leaderboard = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="text-sm mt-2">{top3[1].Nama}</p>
+                <p className="text-sm mt-2 text-center">{top3[1].Nama}</p>
                 <p className=" font-bold">{top3[1].final_kpi}%</p>
               </div>
             )}
@@ -163,7 +163,7 @@ const Leaderboard = () => {
                     className="w-full h-full object-cover "
                   />
                 </div>
-                <p className="text-sm mt-2">{top3[0].Nama}</p>
+                <p className="text-sm mt-2 text-center">{top3[0].Nama}</p>
                 <p className=" text-xl font-bold">{top3[0].final_kpi}%</p>
               </div>
             )}
@@ -183,7 +183,7 @@ const Leaderboard = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="text-sm mt-2">{top3[2].Nama}</p>
+                <p className="text-sm mt-2 text-center">{top3[2].Nama}</p>
                 <p className=" font-bold">{top3[2].final_kpi}%</p>
               </div>
             )}
