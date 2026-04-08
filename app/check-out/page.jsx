@@ -287,7 +287,7 @@ const CheckIn = () => {
 
             <SelectField
               value={formData.kesan}
-              placeholder="⁠Adakah hal yang membuatmu terkesan hari ini ?"
+              placeholder="⁠Adakah hal yang membuatmu terkesan hari ini?"
               options={[
                 {
                   value: "Ada!",
@@ -319,7 +319,7 @@ const CheckIn = () => {
 
             <SelectField
               value={formData.dukungan}
-              placeholder="Apakah kamu merasa terbantu dengan dukungan tim yang diberikan dalam pelayanan hari ini"
+              placeholder="Apakah kamu merasa terbantu dengan dukungan tim yang diberikan dalam pelayanan hari ini?"
               options={[
                 {
                   value: "Terbantu banget dong",
