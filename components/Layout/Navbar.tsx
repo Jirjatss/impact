@@ -29,7 +29,7 @@ export default function Navbar() {
 
   return (
     <nav className="navbar bg-white border-b border-gray-300 shadow-md z-50">
-      <div className="flex justify-between items-center gap-8 w-full p-6">
+      <div className="flex justify-between items-center gap-8 w-full md:p-6 p-3">
         {/* Logo */}
         <a
           href="#home"
