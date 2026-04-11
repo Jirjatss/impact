@@ -90,8 +90,8 @@ const Leaderboard = () => {
   const others = sorted?.slice(3);
 
   return (
-    <div className="py-10 md:py-16 mx-24 flex flex-col">
-      <h1 className="text-6xl font-bold text-center mb-4 text-gray-600">
+    <div className="py-10 md:py-16 md:mx-24 flex flex-col">
+      <h1 className="md:text-6xl text-4xl font-bold text-center mb-4 text-gray-600">
         Leaderboard
       </h1>
       <p className="text-center text-2xl font-semibold text-gray-600 mb-4">
@@ -104,7 +104,7 @@ const Leaderboard = () => {
         })}
       </p>
       {dataGrapari.length > 1 && (
-        <div className="relative w-96 flex justify-center items-center mx-auto">
+        <div className="relative md:w-96 flex justify-center items-center mx-auto">
           <SelectField
             value={url}
             showClearButton={false}
@@ -126,64 +126,70 @@ const Leaderboard = () => {
           Loading
         </div>
       ) : (
-        <div className="flex flex-col items-center py-10 mx-auto font-semibold w-full mt-10">
-          <div className="flex items-end gap-10 mb-10 w-full justify-center">
+        <div className="flex flex-col items-center py-10 mx-auto font-semibold w-full mt-10 md:px-0 px-4">
+          <div className="flex items-end md:gap-10 gap-2 mb-10 w-full justify-center">
             {/* Rank 2 */}
             {top3[1] && (
-              <div className="flex flex-col items-center w-1/6 bg-gradient-to-b from-[#F8FAFC] via-[#E2E8F0] to-[#94A3B8] ring-1 ring-white/50 shadow-[inset_0_-20px_40px_rgba(30,64,175,0.3)] rounded-md p-4 relative">
+              <div className="flex flex-col items-center md:w-1/6 w-1/3 bg-gradient-to-b from-[#F8FAFC] via-[#E2E8F0] to-[#94A3B8] ring-1 ring-white/50 shadow-[inset_0_-20px_40px_rgba(30,64,175,0.3)] rounded-md p-4 relative">
                 <Image
                   src={silver}
                   alt=""
-                  className="w-16 h-16 mb-3 absolute top-0 right-8"
+                  className="md:w-16 md:h-16 w-10 h-10 mb-3 absolute top-0 md:right-8 right-2"
                 />
-                <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl overflow-hidden border border-white/50">
+                <div className="md:w-20 md:h-20 w-16 h-16 rounded-full flex items-center justify-center text-3xl overflow-hidden border border-white/50">
                   <img
                     src={top3[1].image}
                     alt=""
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="text-sm mt-2 text-center">{top3[1].Nama}</p>
+                <p className="md:text-sm text-xs mt-2 text-center line-clamp-2">
+                  {top3[1].Nama}
+                </p>
                 <p className=" font-bold">{top3[1].final_kpi}%</p>
               </div>
             )}
 
             {/* Rank 1 */}
             {top3[0] && (
-              <div className="flex flex-col items-center scale-110 bg-gradient-to-b from-[#FFFBEB] via-[#FDE68A] to-[#F59E0B] ring-1 ring-white/50 shadow-[inset_0_-20px_40px_rgba(59,130,246,0.4)] w-1/6 relative border border-[#ffe682] rounded-md p-4">
+              <div className="flex flex-col items-center scale-110 bg-gradient-to-b from-[#FFFBEB] via-[#FDE68A] to-[#F59E0B] ring-1 ring-white/50 shadow-[inset_0_-20px_40px_rgba(59,130,246,0.4)] md:w-1/6 w-1/3 relative border border-[#ffe682] rounded-md p-4">
                 <Image
                   src={diamond}
                   alt=""
                   className="w-10 h-10 mb-3 absolute -top-8"
                 />
-                <div className="w-28 h-28 rounded-full flex items-center justify-center text-4xl overflow-hidden border border-white/50">
+                <div className="md:w-28 md:h-28 w-20 h-20 rounded-full flex items-center justify-center text-4xl overflow-hidden border border-white/50">
                   <img
                     src={top3[0].image}
                     alt=""
                     className="w-full h-full object-cover "
                   />
                 </div>
-                <p className="text-sm mt-2 text-center">{top3[0].Nama}</p>
+                <p className="md:text-sm text-xs mt-2 text-center line-clamp-2">
+                  {top3[0].Nama}
+                </p>
                 <p className=" text-xl font-bold">{top3[0].final_kpi}%</p>
               </div>
             )}
 
             {/* Rank 3 */}
             {top3[2] && (
-              <div className="flex flex-col items-center w-1/6 rounded-md bg-gradient-to-b from-[#FFF7ED] via-[#FED7AA] to-[#D97706] ring-1 ring-white/50 shadow-[inset_0_-20px_40px_rgba(59,130,246,0.3)] relative p-4">
+              <div className="flex flex-col items-center rounded-md bg-gradient-to-b from-[#FFF7ED] via-[#FED7AA] to-[#D97706] ring-1 ring-white/50 shadow-[inset_0_-20px_40px_rgba(59,130,246,0.3)] md:w-1/6 w-1/3 relative p-4">
                 <Image
                   src={bronze}
                   alt=""
-                  className="w-16 h-16 mb-3 absolute top-0 right-8"
+                  className="md:w-16 md:h-16 w-10 h-10 mb-3 absolute top-0 md:right-8 right-2"
                 />
-                <div className="w-20 h-20 rounded-full  flex items-center justify-center text-3xl overflow-hidden border border-white/50">
+                <div className="md:w-20 md:h-20 w-16 h-16 rounded-full  flex items-center justify-center text-3xl overflow-hidden border border-white/50">
                   <img
                     src={top3[2].image}
                     alt=""
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="text-sm mt-2 text-center">{top3[2].Nama}</p>
+                <p className="md:text-sm text-xs mt-2 text-center line-clamp-2">
+                  {top3[2].Nama}
+                </p>
                 <p className=" font-bold">{top3[2].final_kpi}%</p>
               </div>
             )}

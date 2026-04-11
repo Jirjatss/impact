@@ -43,7 +43,7 @@ export default function HeroCarousel() {
     <section className="relative w-full">
       <div className="overflow-hidden relative">
         <div
-          className="flex transition-transform duration-500 ease-in-out lg:py-0 py-36"
+          className="flex transition-transform duration-500 ease-in-out lg:py-0 py-12"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {heroSlides.map((slide) => (
@@ -51,6 +51,13 @@ export default function HeroCarousel() {
               key={slide.id}
               className="w-full relative lg:h-172 items-center justify-center min-w-full grid lg:grid-cols-2"
             >
+              <div className="justify-center items-center bg-accent">
+                <Image
+                  src={slide.image}
+                  alt={slide.title}
+                  className=" object-contain"
+                />
+              </div>
               <div className="relative z-10 text-start space-y-6 px-4 max-w-4xl md:mx-24">
                 <h1 className="text-4xl  xl:text-6xl font-bold text-[#5a5a72]">
                   {slide.title}

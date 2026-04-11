@@ -9,7 +9,7 @@ function Layout({ children, className }) {
     <>
       <Navbar />
       <div
-        className={`w-full min-h-screen card-mentor pb-10 ${pathname !== "/" && "pt-4 md:px-8"} ${className}`}
+        className={`w-full min-h-screen card-mentor pb-10 ${pathname !== "/" && "md:pt-4 md:px-8"} ${className}`}
       >
         {children}
       </div>

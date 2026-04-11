@@ -123,9 +123,13 @@ const CheckIn = () => {
 
   return (
     <Layout className="bg-[#eff6ff]">
-      <Image src={image} className="w-full h-full mb-12 rounded-md" alt="" />
-      <div className="flex gap-8 items-start">
-        <div className="flex flex-col w-2/3 border-gray-300 border shadow-md rounded-md bg-white p-8">
+      <Image
+        src={image}
+        className="md:w-full md:h-full w-full h-16 lg:mb-12 mb-4 rounded-md lg:px-0 px-2  pt-4 md:pt-0"
+        alt=""
+      />
+      <div className="flex lg:flex-row flex-col-reverse gap-8 items-start lg:px-4 px-2">
+        <div className="flex flex-col lg:w-2/3 w-full border-gray-300 border shadow-md rounded-md bg-white lg:p-8 lg:py-0 p-4">
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <label className="input bg-transparent border border-gray-300 w-full">
               <span className="label">Nama</span>
@@ -367,9 +371,9 @@ const CheckIn = () => {
           </form>
         </div>
         {/* Sidebar Instruksi */}
-        <div className="shadow-md w-1/3 border max-h-fit border-gray-300 rounded-md bg-white">
+        <div className="shadow-md lg:w-1/3 w-full border max-h-fit border-gray-300 rounded-md bg-white">
           <p className="p-4 border-b border-gray-300 font-bold">Instruksi</p>
-          <div className="flex flex-col gap-4 my-4">
+          <div className="flex flex-col lg:gap-4 gap-2 my-4">
             <p className="px-4 text-sm">
               1. Isilah setiap kolom sesuai dengan kondisi kamu saat ini
             </p>
@@ -380,8 +384,8 @@ const CheckIn = () => {
               3. Setiap jawaban akan dijamin kerahasiaannya
             </p>
           </div>
-          <div className="p-4 bg-[#234b63] mx-auto w-3/4 flex rounded-md my-4 mt-8 text-white flex-col gap-4 justify-center items-center text-center font-semibold">
-            <p className="px-4 text-sm">
+          <div className="p-4 bg-[#234b63] mx-auto lg:w-3/4 flex lg:rounded-md rounded-b-md lg:my-4 mt-8 text-white flex-col gap-4 justify-center items-center text-center font-semibold">
+            <p className="lg:px-4 lg:text-sm text-xs">
               TODAY IS ANOTHER CHANCE TO IMPROVE, COLLABORATE, AND ACHIEVE
               SOMETHING GREAT TOGETHER
             </p>

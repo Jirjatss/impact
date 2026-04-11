@@ -149,29 +149,29 @@ const Page = () => {
 
   return (
     <Layout>
-      <div className="w-full">
+      <div className="w-full md:px-0 px-2 md:mt-0 mt-3">
         <div className="border-gray-300 border shadow-md rounded-md bg-white p-8 flex flex-col gap-4">
-          <div className="flex gap-10 ">
+          <div className="flex md:flex-row flex-col gap-10 ">
             <Image
               src={formattedData.Photo || blank}
               alt=""
               width={320}
               height={320}
-              className="w-56 h-56 object-cover rounded-md"
+              className="md:w-56 md:h-56 h-72 object-cover rounded-md"
             />
             <div className="flex-1">
-              <h1 className="w-full mb-6 text-4xl font-semibold text-gray-600">
+              <h1 className="w-full mb-6 md:text-4xl text-xl font-semibold text-gray-600 md:text-start text-center">
                 {formattedData.Nama}
               </h1>
 
-              <div className="flex flex-col w-fit items-center gap-2 ml-2">
+              <div className="flex flex-col md:w-fit items-center gap-2 ml-2">
                 {tier && <Image src={tier} alt="" className="w-20 h-20" />}
                 <p className="font-semibold text-xl text-gray-600">
                   {formattedData.CATEGORY} TIER
                 </p>
               </div>
 
-              <p className="font-semibold text-xl text-gray-600 ml-2">
+              <p className="font-semibold text-xl text-gray-600 ml-2 md:w-fit w-full text-center">
                 NIK : {formattedData.NIK}
               </p>
             </div>
@@ -179,7 +179,7 @@ const Page = () => {
 
           <div className="border-b border-gray-300" />
 
-          <div className="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-6">
+          <div className="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-6">
             {metrics.map((metric, index) => {
               const Icon = metric.icon;
 

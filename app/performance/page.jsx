@@ -91,8 +91,8 @@ const PerformancePage = () => {
 
   return (
     <Layout>
-      <div className="overflow-x-auto overflow-hidden pt-4">
-        <h1 className="w-full mb-8 border-b border-gray-300 py-4 text-4xl font-semibold text-gray-600">
+      <div className="overflow-x-auto overflow-hidden pt-4 md:px-0 px-2">
+        <h1 className="w-full mb-8 border-b border-gray-300 md:py-4 md:text-4xl text-2xl font-semibold text-gray-600">
           {new Date(
             new Date().setMonth(new Date().getMonth() - 1),
           ).toLocaleDateString("en-US", {
@@ -102,7 +102,7 @@ const PerformancePage = () => {
           Performance
         </h1>
         {dataGrapari.length > 1 && (
-          <div className="relative w-96 flex justify-center items-center mb-6">
+          <div className="relative md:w-96 flex justify-center items-center mb-6">
             <SelectField
               value={url}
               showClearButton={false}
@@ -130,19 +130,21 @@ const PerformancePage = () => {
           </div>
         ) : (
           <>
-            <div className="flex justify-between items-center mb-4">
-              <button
-                className="px-3 py-2 bg-[#2563EB] text-white rounded-md cursor-pointer item"
-                onClick={async () => {
-                  setSearchName("");
-                  setPage(1);
-                  await fetchData("", 1);
-                }}
-              >
-                Refresh
-              </button>
-              <div className="flex flex-end items-center">
-                <p className="w-full">Search By Name :</p>
+            <div className="flex md:flex-row flex-col items-start md:gap-0 gap-2 md:justify-between md:items-center mb-4">
+              <div className="flex flex-start items-start">
+                <button
+                  className="px-3 py-2 bg-[#2563EB] text-white rounded-md cursor-pointer text-xs md:text-md"
+                  onClick={async () => {
+                    setSearchName("");
+                    setPage(1);
+                    await fetchData("", 1);
+                  }}
+                >
+                  Refresh
+                </button>
+              </div>
+              <div className="flex flex-end items-center ">
+                <p className="md:w-full w-60">Search By Name :</p>
                 <input
                   type="text"
                   placeholder="Type Name"
@@ -154,7 +156,7 @@ const PerformancePage = () => {
             </div>
             <table className="border border-gray-300 w-full">
               {/* head */}
-              <thead className=" text-black p-4">
+              <thead className=" text-black p-4 text-xs md:text-md">
                 <tr className="">
                   <th className="p-2.5 center border-r border-gray-300">No</th>
                   <th className="p-2.5 text-center border-r border-gray-300">
@@ -188,7 +190,7 @@ const PerformancePage = () => {
                 </tr>
               </thead>
               {filteredData.length ? (
-                <tbody className="border-t border-b border-gray-300">
+                <tbody className="border-t border-b border-gray-300 text-xs md:text-md">
                   {filteredData.map((item, index) => {
                     const genap = index % 2 === 0;
                     return (
@@ -251,7 +253,7 @@ const PerformancePage = () => {
                 </tbody>
               )}
             </table>
-            <div className="flex justify-end mt-4">
+            <div className="flex md:justify-end mt-4 text-xs md:text-md">
               <div className="join grid grid-cols-3 justify-end items-center">
                 <button
                   className={`${
