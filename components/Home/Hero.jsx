@@ -51,7 +51,7 @@ export default function HeroCarousel() {
               key={slide.id}
               className="w-full relative lg:h-172 items-center justify-center min-w-full grid lg:grid-cols-2"
             >
-              <div className="justify-center items-center bg-accent">
+              <div className="justify-center items-center lg:hidden flex">
                 <Image
                   src={slide.image}
                   alt={slide.title}
