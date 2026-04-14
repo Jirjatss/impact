@@ -129,7 +129,7 @@ const CheckIn = () => {
         alt=""
       />
       <div className="flex lg:flex-row flex-col-reverse gap-8 items-start lg:px-4 px-2">
-        <div className="flex flex-col lg:w-2/3 w-full border-gray-300 border shadow-md rounded-md bg-white lg:p-8 lg:py-0 p-4">
+        <div className="flex flex-col lg:w-2/3 w-full border-gray-300 border shadow-md rounded-md bg-white lg:p-8 lg:py-4 p-4">
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <label className="input bg-transparent border border-gray-300 w-full">
               <span className="label">Nama</span>
