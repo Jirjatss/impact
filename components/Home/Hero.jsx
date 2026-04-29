@@ -9,7 +9,7 @@ import Image from "next/image";
 const heroSlides = [
   {
     id: 1,
-    title: "Improve Motivation and Performance for customer satisACTion",
+    title: "Improving Motivation and Performance to be impACTful",
     description: "Empowering Every Voice to Deliver Better Service",
     image: hero1,
   },
@@ -17,7 +17,7 @@ const heroSlides = [
     id: 2,
     title: "NEED MORE HELP?",
     description:
-      "If you experience or see any violations a twork, you can also seek for help through Telkomsel’s RWP (Respectful Workplace Program)",
+      "If you experience or see any violations at work, you can also seek for help through Telkomsel’s RWP (Respectful Workplace Program)",
     image: hero2,
   },
 ];
