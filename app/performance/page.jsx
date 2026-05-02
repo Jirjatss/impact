@@ -101,7 +101,7 @@ const PerformancePage = () => {
           {"'s "}
           Performance
         </h1>
-        {dataGrapari.length > 1 && (
+        {/* {dataGrapari.length > 1 && (
           <div className="relative md:w-96 flex justify-center items-center mb-6">
             <SelectField
               value={url}
@@ -121,7 +121,7 @@ const PerformancePage = () => {
               }}
             />
           </div>
-        )}
+        )} */}
 
         {loading ? (
           <div className="flex flex-col gap-3 justify-center items-center mt-24">

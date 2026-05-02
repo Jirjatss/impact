@@ -103,7 +103,7 @@ const Leaderboard = () => {
           year: "numeric",
         })}
       </p>
-      {dataGrapari.length > 1 && (
+      {/* {dataGrapari.length > 1 && (
         <div className="relative md:w-96 flex justify-center items-center mx-auto">
           <SelectField
             value={url}
@@ -118,7 +118,7 @@ const Leaderboard = () => {
             onChange={(value) => setUrl(value)}
           />
         </div>
-      )}
+      )} */}
 
       {loading || !sorted || !top3 || !others ? (
         <div className="flex flex-col gap-3 justify-center items-center mt-24">

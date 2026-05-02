@@ -163,7 +163,7 @@ const CheckIn = () => {
               />
             </label>
 
-            <div className="relative">
+            {/* <div className="relative">
               <SelectField
                 value={url}
                 showClearButton={false}
@@ -179,7 +179,7 @@ const CheckIn = () => {
                   setFormData({ ...formData, grapari: value });
                 }}
               />
-            </div>
+            </div> */}
 
             <div className="relative w-full">
               <SelectField
