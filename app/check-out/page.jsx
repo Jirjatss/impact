@@ -20,25 +20,25 @@ const getDate = () => {
 const CheckIn = () => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const [dataGrapari, setDataGrapari] = useState([]);
-  const [url, setUrl] = useState();
-  const fetchGrapari = async () => {
-    setLoading(true);
+  // const [url, setUrl] = useState();
+  // const fetchGrapari = async () => {
+  //   setLoading(true);
 
-    const url = `${API_URL}?sheet=GraPARI`;
-    try {
-      const response = await fetch(url);
-      const result = await response.json();
-      setDataGrapari(result.data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  //   const url = `${API_URL}?sheet=GraPARI`;
+  //   try {
+  //     const response = await fetch(url);
+  //     const result = await response.json();
+  //     setDataGrapari(result.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchGrapari();
-  }, []);
+  // useEffect(() => {
+  //   fetchGrapari();
+  // }, []);
 
   const [formData, setFormData] = useState({
     targetSheet: "Checkout",
@@ -55,7 +55,7 @@ const CheckIn = () => {
     detail_dukungan: "",
     kendala: "",
     detail_kendala: "",
-    grapari: "",
+    grapari: API_URL,
   });
 
   const disabled =
@@ -65,8 +65,7 @@ const CheckIn = () => {
     formData.perasaan === "" ||
     formData.kesan === "" ||
     formData.dukungan === "" ||
-    formData.kendala === "" ||
-    formData.grapari === "";
+    formData.kendala === "";
 
   const [loading, setLoading] = useState(false);
 
@@ -81,7 +80,7 @@ const CheckIn = () => {
     );
 
     try {
-      const response = await fetch(url, {
+      const response = await fetch(API_URL, {
         method: "POST",
         mode: "no-cors", // Penting untuk menghindari CORS pre-flight
         cache: "no-cache",
@@ -111,7 +110,7 @@ const CheckIn = () => {
         kendala: "",
         detail_kendala: "",
         tanggal: "",
-        grapari: "",
+        grapari: API_URL,
       });
     } catch (error) {
       console.error("Error saat simpan data:", error);
