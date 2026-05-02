@@ -184,7 +184,7 @@ const CheckIn = () => {
             <div className="relative w-full">
               <SelectField
                 value={formData.kondisi}
-                placeholder="Bagaimana kondisi kesehatan fisikmu Hari ini?"
+                placeholder="Bagaimana kondisi kesehatan fisikmu hari ini?"
                 options={[
                   { value: "Sehat dong", label: "Sehat dong" },
                   {
